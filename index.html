@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="icon" href="img.png" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif, 'Times New Roman', Times, serif;
+            text-decoration: none;
+            list-style: none;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 12%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+
+        .logo{
+            font-size: 25px;
+            color: white;
+            font-weight: 600;
+            transition: 0.3 ease;
+        }
+
+        .logo:hover{
+            color: orangered;
+            text-shadow: 0 0 25px orangered,
+                        0 0 50px orangered;
+            transform: scale(1.1);
+        }
+
+        span {
+            color: orangered;
+        }
+
+        .navbar a{
+            font-size: 18px;
+            color: white;
+            font-weight: 500;
+            margin: 0 20px;
+            border-bottom: 3px solid transparent;
+            translate: 0.3s ease;
+        }
+
+        .navbar a:hover,
+        .navbar a.active{
+            color: orangered;
+            border-bottom: 3px solid orangered;
+        }
+
+        .contact{
+            padding: 10px 28px;
+            background-color: white;
+            color: black;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            font-size: 16px;
+            letter-spacing: 1px;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .contact:hover{
+            background-color: orangered;
+            box-shadow: 0 0 25px orangered;
+            color: white;
+        }
+
+        .home{
+            width: 100%;
+            min-height: 100vh;
+            background: rgb(241, 241, 241);
+            display: flex;
+            align-items: center;
+            gap: 7em;
+            padding: 30px 12% 0;
+        }
+
+        .home-content{
+            max-width: 800px;
+        }
+
+        .home-content h3 {
+            font-size: 42px;
+        }
+
+        .home-content h1 {
+            font-size: 62px;
+            line-height: 1.2;
+        }
+
+        .home-content p {
+            font-size: 18px;
+            margin: 25px 0 30px;
+        }
+
+        #about-me {
+            margin: 40px 0px;
+        }
+
+        .btn-box{
+            width: 385px;
+            display: flex;
+            gap: 2em;
+        }
+
+        .btn-1, #send_message {
+            padding: 15px 28px;
+            background-color: black;
+            color: white;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            font-size: 18px;
+            letter-spacing: 1px;
+            font-weight: 600;
+            transition: 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-1:hover, #send_message:hover{
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+        }
+
+        .btn-2 {
+            padding: 15px 28px;
+            background-color: orangered;
+            color: white;
+            border: 2px solid black;
+            border-radius: 8px;
+            font-size: 18px;
+            letter-spacing: 1px;
+            font-weight: 600;
+            transition: 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-2:hover {
+            background-color: white;
+            color: orangered;
+        }
+
+        .img-box img{
+            display: inline-block;
+            border-radius: 50%;
+            width: 550px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 15px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: orangered;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: rgba(0, 0, 0, 0.6);
+            width: 50px;
+        }
+
+        /* Skills Section */
+        .skills {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        
+        .skills h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+            .skills-container {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+        
+            .skill {
+                text-align: center;
+                width: 200px;
+            }
+            
+            .skill i {
+                font-size: 3rem;  /* Adjust icon size */
+                color: #333;      /* Icon color */
+                margin-bottom: 10px;
+                transition: transform 0.3s ease;
+            }
+            
+            .skill i:hover {
+                transform: scale(1.1); /* Hover effect */
+            }
+            
+            .skill p {
+                font-size: 1rem;
+                color: #333;
+                background-color: black;
+                padding: 5px 10px;
+                font-weight: bold;
+            }
+
+            .skill .p-img {
+                font-size: 1rem;
+                color: #ffffff;
+                background-color: black;
+                padding: 7px 12px;
+                margin-top: 34px;
+                font-weight: bold;
+            }
+
+            .skill-img {
+                width: 50px;  /* Adjust the width of the logo */
+                height: 50px; /* Ensure it remains square */
+                margin-bottom: 10px; /* Space between the image and the text */
+                transition: transform 0.3s ease; /* Smooth hover effect */
+            }
+
+        .contact-form .sample-title {
+            margin-top: 40px;
+        }
+
+        .about {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12% 8%;
+            gap: 10em;
+            background: black;
+        }
+
+        .about-img img{
+            position: relative;
+            width: 550px;
+            box-shadow: 0 0 25px orangered,
+                        0 0 50px orangered;
+            border-radius: 50%;
+        }
+
+        .about-content h2 {
+            text-align: left;
+            color: white;
+            font-size: 42px;
+        }
+
+        .about-content h3 {
+            font-size: 62px;
+            color: white;
+        }
+
+        .about-content p {
+            color: white;
+            font-size: 20px;
+            margin: 2em;
+        }
+
+        #projects-content {
+            color: white;
+            font-size: 20px;
+            margin: 2em;
+        }
+
+        .projects {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .projects h2 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .projects-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .project {
+            background-color: black;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            width: 700px;
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        #prod  {
+            margin-top: 10px;
+        }
+
+        #project3 {
+            width: 1900px;
+        }
+
+        .project img {
+            width: 900px;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .project p {
+            font-size: 1rem;
+            color: #333;
+            background-color: black;
+            padding: 20px;
+            font-weight: bold;
+        }
+
+        .project a {
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .project a:hover {
+            background-color: #666;
+        }
+
+        .project:hover {
+            transform: scale(1.05); /* Slight hover effect */
+        }
+
+        .contact-form p{
+            color: white;
+            font-size: 20px;
+            margin: 2em 0 3em;
+        }
+
+        .project-form {
+            /* justify-content: center;
+            align-items: center;
+            padding: 12% 8%;
+            gap: 10em; */
+            background-color: black;
+            color: white;
+        }
+
+        .contact-form h2,  .project-form h2 {
+            text-align: center;
+            margin-top: 3em;
+            margin-bottom: 1em;
+            font-size: 36px;
+        }
+
+        .contact-form form, .project-form .project-div {
+            max-width: 50em;
+            margin: 1em auto;
+            text-align: center;
+            margin-bottom: 3em;
+        }
+
+        .contact-form form .input-box{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-form form .input-box input,
+        .contact-form form textarea {
+            width: 100%;
+            padding: 1.5em;
+            font-size: 18px;
+            color: black;
+            background: rgb(241, 241, 241);
+            border-radius: .8rem;
+            margin: 1rem 0;
+            resize: none;
+        }
+
+        .footer {
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            padding: 4px 0;
+            background-color: black;
+        }
+
+        .footer .social {
+            text-align: center;
+            padding-bottom: 5px;
+            margin-top: 20px;
+            color: white;
+        }
+
+        .footer .social a {
+            font-size: 24px;
+            color: white;
+            border: 2px solid orangered;
+            width: 40px;
+            line-height: 34px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 40%;
+            margin: 0 8px;
+            box-shadow: inset 0 0 10px orangered, 0 0 10px orangered;
+            transition: 0.3s ease;
+        }
+
+        .footer .social a i{
+            padding-top: 6px;
+        }
+
+        .footer .social a:hover {
+            transform:  scale(1.2)translateY(-10px);
+            color: orangered;
+            border: 2px solid orangered;
+        }
+
+        .footer ul {
+            margin-top: 0;
+            padding: 0;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        .footer ul li a{
+            color: white;
+            border-bottom: 3px solid transparent;
+            transition: 0.3s ease;
+        }
+
+        .footer ul li a:hover {
+            border-bottom: 3px solid orangered;
+        }
+
+        .footer ul li{
+            display: inline-block;
+            padding: 0 15px;
+        }
+
+        .footer .copyright {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: white;
+        }
+
+        /* General Styles for smaller screens (mobile) */
+        @media (max-width: 768px) {
+            body {
+                width: 399%;
+                text-align: center;
+            }
+            /* Header */
+            .header {
+                padding: 20px 5%;
+            }
+
+            .navbar {
+                /* display: flex; */
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .navbar a {
+                margin: 10px 30px;
+                font-size: 16px;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .home {
+                padding: 30px 5%;
+                flex-direction: column;
+                gap: 3em;
+            }
+
+            .home-content h1 {
+                font-size: 36px;
+            }
+
+            .home-content p {
+                font-size: 16px;
+            }
+
+            .img-box img {
+                width: 100%;
+                height: auto;
+                display: none;
+            }
+
+            .btn-box {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .btn-1 {
+                font-size: 14px;
+            }
+
+            /* About Section */
+            .about {
+                padding: 10% 5%;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-img img {
+                width: 300px;
+                height: 300px;
+            }
+
+            .about-content h2 {
+                font-size: 30px;
+                text-align: center;
+            }
+
+            .about-content h3 {
+                font-size: 40px;
+            }
+
+            .about-content p {
+                font-size: 16px;
+                margin: 1em 0;
+            }
+
+            .skills-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .skill {
+                width: 150px;
+            }
+
+            .project {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .project img {
+                width: 100%;
+                height: auto;
+            }
+
+            .projects-container {
+                /* display: flex;
+                flex-direction: column; */
+                justify-content: center;
+                align-self: center;
+            }
+
+            #port {
+                margin-top: 110px;
+            }
+
+            /* Contact Section */
+            .contact-form form .input-box input,
+            .contact-form form textarea {
+                width: 100%;
+            }
+
+            .footer .social a {
+                font-size: 18px;
+                margin: 0 5px;
+            }
+
+            .footer .social {
+                padding-bottom: 10px;
+            }
+
+            .footer .social a i {
+                font-size: 20px;
+            }
+
+            .footer ul li {
+                padding: 5px 10px;
+            }
+
+            .footer .copyright {
+                font-size: 10px;
+            }
+        }
+
+        /* Tablet devices (portrait mode) */
+        @media (max-width: 1024px) {
+            .home {
+                padding: 30px 10%;
+                flex-direction: column;
+            }
+
+            .home-content h1 {
+                font-size: 50px;
+            }
+
+            .home-content p {
+                font-size: 18px;
+            }
+
+            .img-box img {
+                width: 80%;
+                height: auto;
+            }
+
+            .about-content h2 {
+                font-size: 35px;
+            }
+
+            .about-content h3 {
+                font-size: 50px;
+            }
+
+            .skills-container {
+                gap: 20px;
+            }
+
+            .project {
+                width: 45%;
+            }
+
+            .footer ul li {
+                padding: 5px 20px;
+            }
+        }
+
+        /* Large devices (desktops) */
+        @media (min-width: 1200px) {
+            .home {
+                padding: 30px 12%;
+            }
+
+            .home-content h1 {
+                font-size: 62px;
+            }
+
+            .home-content p {
+                font-size: 18px;
+            }
+
+            .img-box img {
+                width: 550px;
+            }
+
+            .btn-box {
+                width: 385px;
+            }
+
+            .projects-container {
+                justify-content: center;
+            }
+
+            .project {
+                width: 700px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo"><span>Patrick</span> Mark</a>
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#aboutme">About Me</a>
+            <a href="#skills">Skills</a>
+            <a href="#project">Projects</a>
+            <!-- <a href="#">Contact</a> -->
+        </nav>
+        <a href="#contact" class="contact">Contact Me</a>
+    </header>
+
+    <section id="home" class="home">
+        <div class="home-content">
+            <h3>Hi</h3>
+            
+            <h1>I'm <span>Patrick Mark <br /></span>a <span class="typing-text">Programmer</span></h1>
+            <p>
+                I'm a Programmer with a strong foundation in building modern web applications. I’m passionate about coding and continuously learning new skills to improve my work.
+            </p>
+
+            <div class="btn-box">
+                <a href="https://drive.google.com/uc?export=download&id=1Rka5HaV9OxiIlkloU1VBA5OP3gD6VmCg" download>
+                    <button class="btn-1">Download CV</button>
+                </a>
+            </div>
+
+        </div>
+        <div class="img-box">
+            <img src="img.png" alt="">
+        </div>
+    </section>
+
+    <section class="about" id="aboutme">
+        <div class="about-img">
+            <img src="img.png" alt="">
+        </div>
+
+        <div class="about-content">
+            <h2 class="heading">About <span>Me</span></h2>
+            <h3><span>Programmer</span></h3>
+            <p id="about-me">
+                I hold a Bachelor of Science in Computer Science, where I studied topics such as algorithms, data structures, web development, and database management. I developed a Sprint Tracking application using PHP, CodeIgniter, MySQL, and jQuery. Over the past 3 years as a junior programmer, I’ve gained experience with both front-end and back-end technologies, including HTML, CSS, JavaScript, and PHP. Additionally, I have worked in team environments, utilized version control with Git, and followed agile development practices, all of which have contributed to my growth as a developer.
+            </p>
+            <a href="#" class="btn-2">Experience</a>
+        </div>
+    </section>
+
+    <section class="contact-form" id="skills">
+        <h2 class="contact-me sample-title">Skills</h2>
+        
+        <div class="skills-container">
+            <div class="skill">
+              <i class='bx bxl-html5'></i>
+              <p>HTML</p>
+            </div>
+
+            <div class="skill">
+              <i class='bx bxl-css3'></i>
+              <p>CSS</p>
+            </div>
+           
+            <div class="skill">
+              <i class='bx bxl-javascript'></i>
+              <p>JavaScript</p>
+            </div>
+
+            <div class="skill">
+                <img src="jquery.png" alt="Jquery" class="skill-img">
+                <p class="p-img">Jquery</p>
+            </div>
+
+            <div class="skill">
+              <i class='bx bxl-php'></i>
+              <p>PHP</p>
+            </div>
+        
+            <div class="skill">
+                <img src="CodeIgniter.png" alt="CodeIgniter" class="skill-img">
+                <p class="p-img">CodeIgniter</p>
+            </div>
+
+            <div class="skill">
+                <i class="fab fa-node"></i>
+                <p>Node.js</p>
+            </div>
+
+            <div class="skill">
+                <img src="express.png" alt="Express JS" class="skill-img">
+                <p class="p-img">Express</p>
+            </div>
+
+            <div class="skill">
+                <img src="soket.png" alt="Socket.io" class="skill-img">
+                <p class="p-img">Socket.IO</p>
+            </div>
+
+            <div class="skill">
+                <img src="mysql.png" alt="MySQL" class="skill-img">
+                <p class="p-img">MySQL</p>
+            </div>
+              
+            <div class="skill">
+                <img src="docker.png" alt="Docker" class="skill-img">
+                <p class="p-img">Docker</p>
+            </div>
+          
+    </section>
+
+    <section id="project" class="contact-form project-form projects">
+        <div class="projects-div">
+            <h2 id="prod">Projects</h2>
+            <div class="projects-container">
+                <div class="project">
+                    <a href="https://www.youtube.com/watch?v=VIDEO_ID_1" target="_blank">
+                      <img src="project1.png" alt="TEXT TO SPEECH" />
+                    </a>
+                    <p>English to Tagalog Text to Speech</p>
+                  </div>
+            
+                  <!-- Project 2 -->
+                  <div class="project">
+                    <a href="https://www.youtube.com/watch?v=VIDEO_ID_2" target="_blank">
+                      <img src="project2.png" alt="Portfolio" />
+                    </a>
+                    <p id="port">Portfolio</p>
+                  </div>
+            
+                  <!-- Project 3 -->
+                  <div class="project" id="project3">
+                    <a href="https://www.youtube.com/watch?v=VIDEO_ID_3" target="_blank">
+                      <img src="sprint2.png" alt="Project 3 Thumbnail" />
+                    </a>
+                    <p>Sprint Tracking</p>
+                  </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-form" id="contact">
+        <h2 class="contact-me sample-title">Contact <span>Me</span></h2>
+    
+        <form id="contact-form">
+            <div class="input-box">
+                <input type="text" id="name" name="name" placeholder="Full Name" required>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+            </div>
+    
+            <div class="input-box">
+                <input type="number" id="phone" name="phone" placeholder="Phone Number" required>
+                <input type="text" id="subject" name="subject" placeholder="Subject" required>
+    
+                <textarea id="message" name="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+                <input type="submit" id="send_message" value="Send Message" class="btn-1">
+            </div>
+        </form>
+
+        <div id="success-message" class="success-message" style="display:none;">
+            <p>Your message has been successfully sent!</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="social">
+            <a href="https://www.facebook.com/patrickinvo/"  target="_blank"><i class='bx bxl-facebook-circle'></i></a>
+            <a href="mailto:patrickinvo@gmail.com"><i class='bx bxl-gmail'></i></a>
+            <a href="https://www.linkedin.com/in/patrick-mark-aboga-285519203/" target="_blank"><i class='bx bxl-linkedin-square' ></i></i></a>
+            <a href="https://www.instagram.com/d0ubleer/" target="_blank"><i class='bx bxl-instagram' ></i></i></a>
+        </div>
+        <p class="copyright">@ 2024 PMA | All Rights Reserved</p>
+    </footer>
+    <script>
+        var typed = new Typed('.typing-text', {
+            strings: ['Programmer', 'Developer'],
+            typeSpeed: 100,
+            backSpeed: 100,
+            backDelay: 1000,  // Wait 1 second after typing the word before starting to backspace
+            loop: true
+        });
+
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from actually submitting
+
+            // Normally, you would handle form data submission here (e.g., via AJAX)
+            
+            // Show SweetAlert Success Message
+            Swal.fire({
+                icon: 'success',
+                title: 'Message Sent!',
+                text: 'Your message has been successfully sent. We will get back to you shortly.',
+                showConfirmButton: true,
+                timer: 5000, // The alert will automatically close after 5 seconds
+                confirmButtonText: 'Great!',
+                background: '#f0f8ff',
+                iconColor: '#28a745',
+                confirmButtonColor: '#28a745',
+            });
+
+            // Optionally, reset the form after submission
+            event.target.reset();
+        });
+    </script>
+</body>
+</html>
+
